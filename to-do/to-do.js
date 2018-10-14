@@ -12,6 +12,7 @@ const save = () => {
 
 const add = (descripcion) => {
     
+    list()
     let toDo = {
         descripcion,
         completado: false
@@ -23,6 +24,23 @@ const add = (descripcion) => {
 
 }
 
+const loadList = () => {
+    
+    try {
+        toDoList = require('../db/data.json')   
+    } catch (error) {
+        toDoList = [] 
+    }
+
+    
+}
+
+const getList = () => {
+    loadList()
+    return toDoList
+}
+
 module.exports = {
-    add
+    add,
+    getList
 }
