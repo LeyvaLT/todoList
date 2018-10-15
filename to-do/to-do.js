@@ -40,7 +40,21 @@ const getList = () => {
     return toDoList
 }
 
+const updateList = (descripcion, completado = true) => {
+    loadList()
+    let index = toDoList.findIndex( tarea => tarea.descripcion === descripcion )
+
+    if ( index >= 0 ) {
+        
+        toDoList[index].completado = completado
+        save()
+        return true 
+
+    }else return false
+}
+
 module.exports = {
     add,
-    getList
+    getList,
+    updateList  
 }

@@ -1,6 +1,6 @@
 const {argv} = require('./config/yargs')
 const colors = require('colors')
-const {add, getList} = require('./to-do/to-do')
+const {add, getList, updateList} = require('./to-do/to-do')
 
 let command = argv._[0];
 
@@ -19,9 +19,10 @@ switch (command) {
         }   
         break;
     case 'actualizar':
-        console.log('Actualizar pendientes')
+        let update = updateList(argv.descripcion, argv.completado)
+        console.log(`${update}`.bgMagenta)
         break;
     default:
-        console.log(`No se reconoce el commando: ${command}`.red)
+        console.log(`No se reconoce el commando: ${command}`.bgYellow)
         break;
 }
