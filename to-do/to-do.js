@@ -53,8 +53,34 @@ const updateList = (descripcion, completado = true) => {
     }else return false
 }
 
+
+let dropElement = (descripcion) => {
+    loadList()
+    let index = toDoList.findIndex( tarea => tarea.descripcion === descripcion )
+
+    if ( index >= 0 ) {
+        
+        toDoList.splice(index, index)
+        save()
+        return true 
+
+    }else return false
+
+}
+
+
+let filterList = (completado = true) => {
+    loadList()
+    let filter = toDoList.filter(tarea => (tarea.completado === completado));
+    console.log(filter)
+    return filter
+}
+
+
 module.exports = {
     add,
     getList,
-    updateList  
+    updateList,
+    dropElement,
+    filterList  
 }
